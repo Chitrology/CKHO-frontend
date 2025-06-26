@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || '';
-
 interface LiveClassFormProps {
   mode: 'create' | 'edit';
   initialData?: Partial<LiveClassFormData>;
@@ -54,13 +52,11 @@ const LiveClassForm: React.FC<LiveClassFormProps> = ({ mode, initialData, onSubm
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
 
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
   useEffect(() => {
     // Fetch instructors (mentors)
     const fetchInstructors = async () => {
       try {
-        const res = await fetch(`${API_URL}/api/mentors`);
+        const res = await fetch('http://localhost:4000/api/mentors');
         const data = await res.json();
         setInstructors(data || []);
       } catch {
@@ -95,7 +91,7 @@ const LiveClassForm: React.FC<LiveClassFormProps> = ({ mode, initialData, onSubm
         priceStandard: Number(form.priceStandard),
         priceEarlyBird: Number(form.priceEarlyBird),
       };
-      const url = mode === 'create' ? `${API_URL}/api/admin/live-classes` : `${API_URL}/api/admin/live-classes/${(initialData as any)?.id}`;
+      const url = mode === 'create' ? '/api/admin/live-classes' : `/api/admin/live-classes/${(initialData as any)?.id}`;
       const method = mode === 'create' ? 'POST' : 'PUT';
       const res = await fetch(url, {
         method,

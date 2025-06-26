@@ -13,8 +13,6 @@ interface LiveClass {
   bundleOfferEnabled: boolean;
 }
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
 export default function AdminLiveClassesPage() {
   const [liveClasses, setLiveClasses] = useState<LiveClass[]>([]);
   const [loading, setLoading] = useState(true);
@@ -24,7 +22,7 @@ export default function AdminLiveClassesPage() {
     const fetchLiveClasses = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`${API_URL}/api/admin/live-classes`);
+        const res = await fetch('/api/admin/live-classes');
         const data = await res.json();
         setLiveClasses(data.classes || []);
       } catch (err) {
