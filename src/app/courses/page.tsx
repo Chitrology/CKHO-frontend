@@ -15,7 +15,7 @@ interface Course {
   _count?: {
     reviews: number;
   };
-  avgRating?: number;
+  avgRating?: number; 
 }
 
 interface LiveClass {
