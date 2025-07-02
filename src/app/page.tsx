@@ -29,7 +29,7 @@ export default function HomePage() {
       }
     };
     fetchLiveClasses();
-  }, []);
+  }, [API_URL]);
 
   return (
     <main>

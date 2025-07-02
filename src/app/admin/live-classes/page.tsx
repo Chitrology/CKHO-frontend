@@ -18,11 +18,13 @@ export default function AdminLiveClassesPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
   useEffect(() => {
     const fetchLiveClasses = async () => {
       try {
         setLoading(true);
-        const res = await fetch('/api/admin/live-classes');
+        const res = await fetch(`${API_URL}/api/admin/live-classes`);
         const data = await res.json();
         setLiveClasses(data.classes || []);
       } catch (err) {
@@ -32,7 +34,7 @@ export default function AdminLiveClassesPage() {
       }
     };
     fetchLiveClasses();
-  }, []);
+  }, [API_URL]);
 
   return (
     <main className="p-8">

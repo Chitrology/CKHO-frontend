@@ -57,7 +57,7 @@ export default function CoursesPage() {
       }
     }
     fetchData();
-  }, []);
+  }, [API_URL]);
 
   const filteredCourses = courses.filter((course) =>
     course.title.toLowerCase().includes(search.toLowerCase())

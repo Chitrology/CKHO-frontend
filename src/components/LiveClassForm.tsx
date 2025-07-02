@@ -56,7 +56,8 @@ const LiveClassForm: React.FC<LiveClassFormProps> = ({ mode, initialData, onSubm
     // Fetch instructors (mentors)
     const fetchInstructors = async () => {
       try {
-        const res = await fetch('http://localhost:4000/api/mentors');
+        const API_URL = process.env.NEXT_PUBLIC_API_URL;
+        const res = await fetch(`${API_URL}/api/mentors`);
         const data = await res.json();
         setInstructors(data || []);
       } catch {
